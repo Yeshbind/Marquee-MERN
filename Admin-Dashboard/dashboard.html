@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Layout</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    background-color: antiquewhite;
+}
+
+.container{
+    width:1000px;
+    height:800px;
+    margin:20px auto;
+
+    display:grid;
+    gap:15px;
+
+    grid-template-columns: 180px 1fr 1fr 1fr;
+    grid-template-rows: 120px 110px 290px 180px;
+}
+
+.item{
+    border:2px solid white;
+}
+
+/* Sidebar */
+.sidebar{
+    grid-column:1/2;
+    grid-row:1/5;
+    background-color: rgb(40, 40, 234);
+}
+
+/* Top Banner */
+.banner{
+    grid-column:2/5;
+    grid-row:1/2;
+    background-color: aqua;
+}
+
+/* Row 2 */
+.box1{
+    grid-column:2/3;
+    grid-row:2/3;
+    background-color: lightseagreen;
+}
+
+.box2{
+    grid-column:3/4;
+    grid-row:2/3;
+    background-color: green;
+}
+
+.box3{
+    grid-column:4/5;
+    grid-row:2/3;
+    background-color: orangered;
+}
+
+/* Row 3 */
+.big{
+    grid-column:2/4;
+    grid-row:3/4;
+    background-color: rgb(97, 42, 214);
+}
+
+.side{
+    grid-column:4/5;
+    grid-row:3/4;
+    background-color: rgb(220, 65, 91);
+}
+
+/* Bottom Row */
+.bottom1,.bottom2,.bottom3{
+    background-color: lightblue;
+}
+.bottom1{
+    grid-column:2/3;
+    grid-row:4/5;
+}
+
+.bottom2{
+    grid-column:3/4;
+    grid-row:4/5;
+}
+
+.bottom3{
+    grid-column:4/5;
+    grid-row:4/5;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="item sidebar"></div>
+
+    <div class="item banner"></div>
+
+    <div class="item box1"></div>
+    <div class="item box2"></div>
+    <div class="item box3"></div>
+
+    <div class="item big"></div>
+    <div class="item side"></div>
+
+    <div class="item bottom1"></div>
+    <div class="item bottom2"></div>
+    <div class="item bottom3"></div>
+
+</div>
+
+</body>
+</html>
