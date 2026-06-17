@@ -1,0 +1,16 @@
+.top-banner{
+    height: 160px;
+    width: 1240px;
+    display:grid ;
+    grid-template-rows: 1fr;
+    background-image: linear-gradient(to top, rgb(4, 69, 151), rgb(1, 22, 49));
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+
+}
