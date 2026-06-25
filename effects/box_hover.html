@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container{
+            background-color: bisque;
+            width: 620px;
+            height: 415px;
+            display: grid;
+            grid-template-rows: 200px 200px 200px;
+            grid-template-columns: 200px 200px 200px;
+            padding: 5px;
+            gap: 5px;
+            border: 1px solid;
+        }
+        .box1, .box2, .box3, .box{
+            background-color: brown;
+        }
+        .container :first-child{
+            border: 2px solid black;
+        }
+        .box1:hover{
+            background-color: red;
+            border-radius: 50%;
+        }
+        .box2:active{
+            visibility: hidden;
+        }
+        .box3:active{
+            background-color: blue;
+            scale: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:#111;
+}
+
+.main{
+    width:1000px;
+    height:500px;
+    position:relative;
+    border:2px solid #444;
+}
+
+/* invisible throw area */
+.button{
+    width:80px;
+    height:80px;
+    position:absolute;
+    left:20px;
+    top:200px;
+
+    background:none;
+    border:none;
+    cursor:pointer;
+}
+
+/* shuriken */
+.button::before{
+    content:"✦";
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:70px;
+    color:silver;
+
+    transition:transform 1s linear;
+}
+
+/* throw animation */
+.button:hover::before{
+    transform:
+        translateX(800px)
+        rotate(2160deg);
+}
+</style>
+</head>
+
+<body>
+
+<div class="main">
+    <button class="button"></button>
+</div>
+
+</body>
+</html> 
