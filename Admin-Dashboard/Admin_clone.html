@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdminLTE Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --sidebar: #343a40;
+      --sidebar-dark: #2f353b;
+      --topbar: #1f2428;
+      --content: #272d31;
+      --border: #42484d;
+      --text: #f1f1f1;
+      --muted: #c2c7d0;
+      --blue: #1674ea;
+      --green: #198754;
+      --yellow: #ffc107;
+      --red: #dc3545;
+    }
+
+    body {
+      margin: 0;
+      background: var(--content);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: 313px;
+      background: var(--sidebar);
+      color: var(--muted);
+      z-index: 5;
+    }
+
+    .brand {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      padding: 0 69px;
+      border-bottom: 1px solid #454b50;
+      font-size: 23px;
+      color: #d6d8da;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #d6d7d8;
+      color: #4d5358;
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .nav {
+      height: calc(100vh - 72px);
+      padding: 19px 10px;
+      overflow-y: auto;
+    }
+
+    .nav-item,
+    .nav-heading {
+      display: flex;
+      align-items: center;
+      min-height: 50px;
+      padding: 0 15px 0 24px;
+      gap: 15px;
+      border-radius: 8px;
+      color: var(--muted);
+      text-decoration: none;
+    }
+
+    .nav-item.active-main {
+      background: #4b5157;
+      color: #fff;
+      margin-bottom: 5px;
+    }
+
+    .nav-item.active {
+      background: #4b5157;
+      color: #fff;
+    }
+
+    .nav-icon {
+      width: 21px;
+      text-align: center;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .nav-label {
+      flex: 1;
+      font-size: 18px;
+    }
+
+    .chevron {
+      font-size: 28px;
+      font-weight: 300;
+      line-height: 0;
+    }
+
+    .badge {
+      min-width: 27px;
+      padding: 3px 8px;
+      border-radius: 7px;
+      background: #6c757d;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .nav-heading {
+      min-height: 43px;
+      padding-left: 15px;
+      font-size: 15px;
+      color: #c5c8cb;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 313px;
+      right: 0;
+      height: 72px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      padding: 0 25px 0 36px;
+      background: var(--topbar);
+      border-bottom: 1px solid #454b50;
+      color: #c8c8c8;
+    }
+
+    .top-left,
+    .top-right {
+      display: flex;
+      align-items: center;
+      gap: 38px;
+    }
+
+    .top-right {
+      margin-left: auto;
+      gap: 27px;
+    }
+
+    .top-link {
+      color: #d0d0d0;
+      text-decoration: none;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .menu-icon {
+      font-size: 25px;
+      line-height: 1;
+    }
+
+    .top-symbol {
+      position: relative;
+      display: inline-grid;
+      place-items: center;
+      min-width: 20px;
+      font-size: 23px;
+      line-height: 1;
+    }
+
+    .notification {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      min-width: 18px;
+      height: 18px;
+      padding: 0 4px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .notification.red { background: #dc3545; }
+    .notification.yellow { background: #ffc107; color: #222; }
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 50% 34%, #999 0 16%, transparent 17%),
+        radial-gradient(circle at 50% 100%, #777 0 38%, transparent 39%),
+        #e7e7e7;
+      border: 2px solid #eee;
+    }
+
+    .user {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .main {
+      margin-left: 313px;
+      padding-top: 72px;
+      min-height: 100vh;
+    }
+
+    .content {
+      padding: 21px 25px 30px;
+    }
+
+    .page-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 29px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 34px;
+      font-weight: 400;
+    }
+
+    .breadcrumb {
+      display: flex;
+      gap: 11px;
+      color: #d0d0d0;
+      font-size: 18px;
+    }
+
+    .breadcrumb a {
+      color: #3d8bfd;
+      text-decoration: none;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 29px;
+      margin-bottom: 23px;
+    }
+
+    .stat-card {
+      position: relative;
+      height: 179px;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 2px rgba(0,0,0,.2);
+      color: #fff;
+    }
+
+    .stat-card.blue { background: var(--blue); }
+    .stat-card.green { background: var(--green); }
+    .stat-card.yellow { background: var(--yellow); color: #000; }
+    .stat-card.red { background: var(--red); }
+
+    .stat-body {
+      height: 140px;
+      padding: 14px 13px;
+    }
+
+    .number {
+      margin-bottom: 18px;
+      font-size: 42px;
+      line-height: 1;
+      font-weight: 700;
+    }
+
+    .number sup {
+      font-size: 21px;
+      top: -.65em;
+      position: relative;
+    }
+
+    .stat-title {
+      font-size: 18px;
+    }
+
+    .stat-footer {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      background: rgba(0,0,0,.12);
+      color: inherit;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    .big-icon {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      color: rgba(0,0,0,.17);
+      font-size: 70px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .panels {
+      display: grid;
+      grid-template-columns: 1.42fr 1fr;
+      gap: 29px;
+    }
+
+    .panel {
+      min-height: 502px;
+      overflow: hidden;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: #202529;
+      box-shadow: 0 1px 3px rgba(0,0,0,.35);
+    }
+
+    .panel.map-panel {
+      min-height: 502px;
+      border-color: #287de9;
+      background: #2f80ed;
+    }
+
+    .panel-head {
+      height: 67px;
+      display: flex;
+      align-items: center;
+      padding: 0 19px;
+      border-bottom: 1px solid #42484d;
+      font-size: 20px;
+    }
+
+    .map-panel .panel-head {
+      border-bottom: 0;
+      font-size: 22px;
+    }
+
+    .collapse-btn {
+      margin-left: auto;
+      width: 40px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 6px;
+      background: rgba(0,72,214,.35);
+      color: #fff;
+      font-size: 24px;
+    }
+
+    .blank-image {
+      display: block;
+      width: calc(100% - 76px);
+      margin: 29px 38px;
+      height: 390px;
+      border: 0;
+      background: transparent;
+    }
+
+    .map-panel .blank-image {
+      width: calc(100% - 40px);
+      height: 365px;
+      margin: 7px 20px 20px;
+    }
+
+    @media (max-width: 1200px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .panels { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 800px) {
+      .sidebar { width: 74px; }
+      .brand { padding: 0 17px; }
+      .brand span:last-child,
+      .nav-label,
+      .chevron,
+      .badge,
+      .nav-heading { display: none; }
+      .nav-item { padding: 0; justify-content: center; }
+      .topbar { left: 74px; }
+      .main { margin-left: 74px; }
+      .top-link,
+      .user span { display: none; }
+      .cards { grid-template-columns: 1fr; }
+      .page-head { align-items: flex-start; gap: 12px; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">A</span>
+      <span>AdminLTE 4</span>
+    </div>
+    <nav class="nav">
+      <a class="nav-item active-main" href="#">
+        <span class="nav-icon">◉</span><span class="nav-label">Dashboard</span><span class="chevron">⌄</span>
+      </a>
+      <a class="nav-item active" href="#">
+        <span class="nav-icon">○</span><span class="nav-label">Dashboard v1</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">○</span><span class="nav-label">Dashboard v2</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">○</span><span class="nav-label">Dashboard v3</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">❀</span><span class="nav-label">Theme Generate</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">◆</span><span class="nav-label">Widgets</span><span class="chevron">›</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">▣</span><span class="nav-label">Layout Options</span><span class="badge">7</span><span class="chevron">›</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">♠</span><span class="nav-label">UI Elements</span><span class="chevron">›</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">✉</span><span class="nav-label">Mailbox</span><span class="chevron">›</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">◩</span><span class="nav-label">Forms</span><span class="chevron">›</span>
+      </a>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">▦</span><span class="nav-label">Tables</span><span class="chevron">›</span>
+      </a>
+      <div class="nav-heading">PAGES</div>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">▤</span><span class="nav-label">Pages</span><span class="chevron">›</span>
+      </a>
+      <div class="nav-heading">EXAMPLES</div>
+      <a class="nav-item" href="#">
+        <span class="nav-icon">⇥</span><span class="nav-label">Auth</span><span class="chevron">›</span>
+      </a>
+    </nav>
+  </aside>
+
+  <header class="topbar">
+    <div class="top-left">
+      <span class="menu-icon">≡</span>
+      <a class="top-link" href="#">▥&nbsp; Live preview</a>
+      <a class="top-link" href="#">▭&nbsp; Documentation</a>
+    </div>
+    <div class="top-right">
+      <span class="top-symbol">⌕</span>
+      <span class="top-symbol">▤<span class="notification red">3</span></span>
+      <span class="top-symbol">♟<span class="notification yellow">15</span></span>
+      <span class="top-symbol">⛶</span>
+      <span class="top-symbol">◕</span>
+      <div class="user"><span class="avatar"></span><span>Alexander Pierce</span></div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="content">
+      <div class="page-head">
+        <h1>Dashboard</h1>
+        <div class="breadcrumb"><a href="#">Home</a><span>/</span><span>Dashboard</span></div>
+      </div>
+
+      <section class="cards">
+        <article class="stat-card blue">
+          <div class="stat-body">
+            <div class="number">150</div>
+            <div class="stat-title">New Orders</div>
+            <div class="big-icon">🛒</div>
+          </div>
+          <a class="stat-footer" href="#">More info&nbsp; ⛓</a>
+        </article>
+        <article class="stat-card green">
+          <div class="stat-body">
+            <div class="number">53<sup>%</sup></div>
+            <div class="stat-title">Bounce Rate</div>
+            <div class="big-icon">▥</div>
+          </div>
+          <a class="stat-footer" href="#">More info&nbsp; ⛓</a>
+        </article>
+        <article class="stat-card yellow">
+          <div class="stat-body">
+            <div class="number">44</div>
+            <div class="stat-title">User Registrations</div>
+            <div class="big-icon">♟+</div>
+          </div>
+          <a class="stat-footer" href="#">More info&nbsp; ⛓</a>
+        </article>
+        <article class="stat-card red">
+          <div class="stat-body">
+            <div class="number">65</div>
+            <div class="stat-title">Unique Visitors</div>
+            <div class="big-icon">◔</div>
+          </div>
+          <a class="stat-footer" href="#">More info&nbsp; ⛓</a>
+        </article>
+      </section>
+
+      <section class="panels">
+        <article class="panel">
+          <div class="panel-head">Sales Value</div>
+          <img class="blank-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Blank graph image">
+        </article>
+        <article class="panel map-panel">
+          <div class="panel-head">Sales Value <span class="collapse-btn">−</span></div>
+          <img class="blank-image" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" alt="Blank map image">
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
