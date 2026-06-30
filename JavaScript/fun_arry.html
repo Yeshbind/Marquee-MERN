@@ -28,7 +28,7 @@
 
         let ab = obj_arr.find(obj => obj.country === "america" )
         let abc = obj_arr.find(obj => obj.age < 18 )
-
+       
         console.log(ab)
         console.log(abc)
 
@@ -38,6 +38,7 @@
             }
         }
         )
+        
 
 
         //finding sum of all
@@ -56,6 +57,14 @@
 
         console.log(sum)
 
+        
+        //changing to uppercase
+
+        const uppercase = obj_arr.map(Element => Element.name.toUpperCase())
+        console.log(uppercase)
+
+
+        
     </script>
 </body>
 </html>
