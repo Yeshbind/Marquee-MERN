@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+        let arr = [10,12,24,5,3,2] 
+        const find_fun = (num1,num2,num3) =>{
+
+            arr.push(num2);
+            arr.unshift(num3);
+            return arr.indexOf(num1);
+
+        }
+
+        console.log(find_fun(12,33,34))
+        console.log(arr)
+       
+        let obj_arr = [{name: "yesh", salary : 500 , age:14 , country : "Japan"},
+                       {name: "ashu", salary : 20 , age:14, country : "Russia"},
+                       {name: "jainam", salary : 100 , age:14, country : "phi phi "},
+                       {name: "parth", salary : 124 , age:14, country : "america"}, 
+        ]
+
+        let ab = obj_arr.find(obj => obj.country === "america" )
+        let abc = obj_arr.find(obj => obj.age < 18 )
+
+        console.log(ab)
+        console.log(abc)
+
+        obj_arr.forEach(Element => {
+            if(Element.country === "Japan"){
+                console.log("Japan wale "  +Element.name);
+            }
+        }
+        )
+
+
+        //finding sum of all
+        let add_arr = [10,20,34,23,22,4,5,67,81]
+        let sum = 0;
+        add_arr.forEach(i => {
+            sum += i;
+        })
+
+        //finding even ele
+        add_arr.forEach(i=>{
+            if(i%2===0){
+                console.log("Even num is :" + i)
+            }
+        })
+
+        console.log(sum)
+
+    </script>
+</body>
+</html>
