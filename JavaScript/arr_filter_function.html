@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+           //Adding the employees name from other arry to the department
+
+              let departments=[
+                {Dname : "IT" , Dcode: 58, employees : [] }
+                ,{Dname : "Finance" , Dcode: 58, employees : [] }
+                ,{Dname : "Marketing" , Dcode: 58, employees : [] }
+                ,{Dname : "HR" , Dcode: 58, employees : [] }
+                ,{Dname : "CEO" , Dcode: 58, employees : [] }
+
+            ]
+
+                    arr.forEach(emp => {
+                    const dept = departments.find(d => d.Dname === emp.department);
+
+                    if (dept) {
+                        dept.employees.push(emp); 
+                    }
+                });
+
+                console.log(departments);
+
+
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+            let arr = [
+                        {name:"bhupendr",salary:70 , age:50, country : "india",department:"IT"},
+                        {name:"rohan", salary:50, age:14, country: "london" , department:"Finance"},
+                        {name: "kartik", salary:3, age:2, country : "amarica",department:"HR"},
+                        {name:"suraj",salary:2, age : 19 , country:"russia",department:"Finance"},
+                        {name:"aryan",salary:1,age:70 , country : "japan",department:"HR"},
+                        {name:"aryan",salary:88,age:40 , country : "japan",department:"IT"},
+                        {name: "jatin", salary:100, age:12, country:"russia",department:"HR"},
+
+                        {name:"aaditya", salary:20, age : 19, country : "india",department:"Marketing"},
+                        {name: "sachi", salary:1, age: 2 , country : "uganda",department:"Finance"},
+                        {name: "khushi", salary : 35, age:99, country : "brazil",department:"IT"},
+                        {name: "parul", salary:500, age:34, country: "zamaika", department:"CEO"}
+                        
+                    ]   
+
+
+                
+            // The emoloyee is form the HR department , his/her name is bhupendr and he is from india.
+
+
+            arr.forEach(x=>{
+                console.log("The employee is form the " +x.department +", his/her name is " +x.name+"and he is from " +x.country)
+            }
+
+            )
+
+           
+            // Counting the total number of person in a specfic department
+            let IT=0;
+            let Finance=0;
+            let CEO =0;
+            let Marketing=0;
+            
+            arr.forEach(x=>{
+                if(x.department == "IT"){
+                    IT++;
+                }
+                else if(x.department == "Finance"){
+                    Finance++;
+                }
+                 else if(x.department == "CEO"){
+                    CEO++;
+                }
+                 else if(x.department == "Marketing"){
+                    Marketing++;
+                }
+                
+            })
+
+            console.log("IT deparment has : "+IT);
+             console.log("Finance deparment has : "+Finance);
+              console.log("CEO deparment has : "+CEO);
+               console.log("Marketing deparment has : "+Marketing);
+
+
+            // Counting the total amt of salary for each country
+
+             let india=0;
+            let london=0;
+            let amarica=0;
+            let russia=0;
+            let japan =0;
+            let zamaika =0;
+            let uganda =0;
+            let brazil =0;
+            
+            arr.forEach(x=>{
+                if(x.country == "india"){
+                    india+=x.salary;
+                }
+                else if(x.country == "london"){
+                    london+=x.salary;;
+                }
+                 else if(x.country == "amarica"){
+                    amarica+=x.salary;;
+                }
+                 else if(x.country == "russia"){
+                    russia+=x.salary;;
+                }
+                 else if(x.country == "japan"){
+                    japan+=x.salary;;
+                }
+                 else if(x.country == "zamaika"){
+                    zamaika+=x.salary;;
+                }
+                 else if(x.country == "brazil"){
+                    brazil+=x.salary;;
+                }
+                 else if(x.country == "uganda"){
+                    uganda+=x.salary;;
+                }
+                
+            })
+
+            console.log("India total salary is: "+india);
+            console.log("America total salary is: "+amarica);
+            console.log("Japan total salary is: "+japan);
+            console.log("London total salary is: "+london);
+            console.log("Zamaika total salary is: "+zamaika);
+            console.log("Brazil total salary is: "+brazil);
+            console.log("Uganda total salary is: "+uganda);
+            console.log("Russia total salary is: "+russia);
+
+
+
+            //Adding the employees name from other arry to the department
+
+              let departments=[
+                {Dname : "IT" , Dcode: 58, employees : [] }
+                ,{Dname : "Finance" , Dcode: 58, employees : [] }
+                ,{Dname : "Marketing" , Dcode: 58, employees : [] }
+                ,{Dname : "HR" , Dcode: 58, employees : [] }
+                ,{Dname : "CEO" , Dcode: 58, employees : [] }
+
+            ]
+
+                    arr.forEach(emp => {
+                    const dept = departments.find(d => d.Dname === emp.department);
+
+                    if (dept) {
+                        dept.employees.push(emp); 
+                    }
+                });
+
+                console.log(departments);
+
+
+                // filter function 
+
+                let filteredArr = arr.filter((item)=>{
+                    return item.salary>50
+                })
+                console.log(filteredArr)
+                
+                // Employes arr who is from india and has more then 10 salary
+
+                let India_arr = arr.filter((sal)=>{
+                    if(sal.country === "india"){
+                        return sal.salary >=10
+                    }
+                })
+
+                console.log(India_arr)
+
+                // Return the names of emp with starting with s
+
+                let sname = arr.filter((item)=>{
+                    return item.name[0]=== "s"
+                })
+                console.log(sname)
+
+                // push a object into arr with the cobination of the other objects dep = county 3rd latter sal =avg of sal , conty any , age any
+
+                let new_name="" ;
+                let new_deparment ="";
+                let c =0;
+                let sal_avg =0;
+                arr.forEach((n)=>{
+                    new_name+=n.name[0]
+                    new_deparment+=n.country[2]
+                    sal_avg += n.salary
+                    c++;
+
+                })
+
+                sal_avg /= c;
+                
+
+                let newuser ={name: new_name , salary: sal_avg, age:56, country: "new", department: new_deparment}
+
+                arr.push(newuser)
+                console.log(newuser)
+
+
+    </script>
+</body>
+</html>
