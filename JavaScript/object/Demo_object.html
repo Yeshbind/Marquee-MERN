@@ -424,6 +424,102 @@ let junior_employees = [
 ];
 
 
+
+        // 1>  printing all the employee of it department
+        
+        // employees.forEach(x=>{
+        //     if(x.department==58){
+        //         console.log(x)
+        //     }
+        // })
+
+       let itcode = departments.find(x=> x.Dname === "IT").Dcode;
+
+       let itemp = employees.filter(x=> x.department === itcode);
+
+        console.log(itemp)
+
+        // 2> return every junior employees of employee
+
+
+        // 3.  itdepartment  ke junior emp ki cart me sab se expensive item     
+
+            let itjunior = junior_employees.filter(x=> x.department === itcode);
+            
+            console.log(itjunior)
+            itjunior.forEach(x=>{
+                x.products_in_cart.forEach(y=>{
+                    let max = 0;
+                    if(max <= y.cost){
+                        max = y.cost;
+                    }
+                    console.log(x.name + "has the most exp item in cart of Rupp: " + max)
+                  
+                })
+
+
+            })
+
+        // 4. Salary of every department employyes andd Salary of every junior of each department
+        
+            let financecode = departments.find(x=> x.Dname === "Finance").Dcode;
+            let hrcode = departments.find(x=> x.Dname === "HR").Dcode;
+            let marketingcode = departments.find(x=> x.Dname === "Marketing").Dcode;
+            let ceocode = departments.find(x=> x.Dname === "CEO").Dcode;
+    
+            let financeemp = employees.filter(x=> x.department === financecode);
+            let hremp = employees.filter(x=> x.department === hrcode);
+            let marketingemp = employees.filter(x=> x.department === marketingcode);
+            let ceoemp = employees.filter(x=> x.department === ceocode);
+
+            let itsalary =0;
+            itemp.forEach(x=>{
+                
+                itsalary+= x.salary;
+
+            })
+
+            let financesalary =0;
+            financeemp.forEach(x=>{
+                
+                financesalary+= x.salary;
+
+            })
+
+             let hrsalary =0;
+            hremp.forEach(x=>{
+                
+                hrsalary+= x.salary;
+
+            })
+
+             let marketingsalary =0;
+            marketingemp.forEach(x=>{
+                
+                marketingsalary+= x.salary;
+
+            })
+
+             let ceosalary =0;
+            ceoemp.forEach(x=>{
+                
+                ceosalary+= x.salary;
+
+            })
+
+
+            console.log("The total salary of it department is : " +itsalary)
+            console.log("The total salary of finance department is : " +financesalary)
+            console.log("The total salary of hr department is : " +hrsalary)
+             console.log("The total salary of marekting department is : " +marketingsalary)
+              console.log("The total salary of ceo department is : " +ceosalary)
+
+             
+
+
+            
+
+
     </script>
 </body>
 </html>
