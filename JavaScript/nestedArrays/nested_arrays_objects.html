@@ -633,9 +633,19 @@
                 console.log(nila);
                     
                     // for skipping  --->  let [lal, ,nila] = colors;  <----  just leave it 
-                    
 
 
+                //3. Shallow copy
+
+                let student =["yesh","jainam",["ashu","araham"]]
+
+                let student_copy = [...student]
+                
+                student_copy[2].push("aayush")
+                console.log(student)
+
+                console.log(student_copy)
+                
             
 
 
