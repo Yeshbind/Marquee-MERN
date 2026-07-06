@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        // Closer ... so 
+
+        function vendingMachine(){
+            let var1 = "Pankha chal gaya .....>>>>>>"
+
+            return function() {console.log(var1)}
+        }
+
+        let pankha = vendingMachine();
+
+        pankha();
+
+        // Function passed to another function 
+
+        function reena(name){
+            console.log("hello " , name);
+        }
+
+        function rohan(){
+            reena("yesh");
+        }
+
+        rohan();
+
+        //Higher order function
+        
+        let arr2 = [2,4,5,6,7,8,9] // <--- 1 D array
+
+        //nested arrays
+
+        let classroom =[
+            ["Yesh" , "Sachin" , "Alok"],
+            ["Vedant", "Advait" , "Satya"],
+            ["Aayush","Araham" ,"Ashu"]
+        ]
+
+        // 1> Printing first column
+        classroom.forEach(element => {
+             console.log(element[0])
+        });
+
+        // 2. Printing dig ele of this
+
+        for (let i = 0; i < classroom.length; i++) {
+             console.log(classroom[i][i]);
+        }
+
+        //3. Printing rev digo 
+
+        for (let i = 0; i < classroom.length; i++) {
+            console.log(classroom[i][classroom.length - 1 - i]);
+        }
+        
+       
+        
+
+    </script>
+    
+</body>
+</html>
