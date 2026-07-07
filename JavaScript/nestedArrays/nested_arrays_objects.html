@@ -660,25 +660,58 @@
 
 
 
-               // all products in cart of emps of id department
+             // all products in cart of emps of id department
 
-               let It_products = []
+            let products=[];
+            nested_employees.forEach((employee) => {
+                employee.forEach((x=>{
+                    if(x.department==58){
+                        x.products_in_cart.forEach(y=>{
+                            products.push(y.Pname);
+                        })
+                    }
+                }))
+            })
+            junior_employees.forEach(x=>{
+                if(x.department==58){
+                        x.products_in_cart.forEach(y=>{
+                            products.push(y.Pname);
+                        })
+                    }
+            })
+            //console.log(products);
+            const frequency = {};
+            products.forEach(item => {
+            if (frequency[item]) {
+                frequency[item] += 1; 
+            } else {
+                frequency[item] = 1;
+            }
+            });
+            console.log(frequency);
 
-               nested_employees.forEach(innerArray => {
-                innerArray.forEach((emoployee)=>{
 
-                })
-                
-               });
+            // adding key of senior id to junior emplyees
+
+           let seniorss = nested_employees.flat();
+
+                    seniorss.forEach((senior) => {
+
+                        senior.junior_assigned.forEach((juniorId) => {
+
+                            let junior = junior_employees.find(j => j.employee_id === juniorId);
+
+                            if (junior) {
+                                junior.senior_id = senior.employee_id;
+                            }
+
+                        });
+
+                    });
+
+                    console.log(junior_employees);
 
 
-               junior_employees.forEach((junior)=> {
-                if(junior.department == 58){
-                    junior.products_in_cart.forEach((product)=>{
-                        let productInFinalArray = It_products.find(prodF => prod.Pname == pro)
-                    })
-                }
-               })
 
 
     </script>
