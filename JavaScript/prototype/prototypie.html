@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+       let person ={
+            name : "yesh",
+            age : 40 ,
+            phone : 9200380283,
+            email : "yesh@gmial.com"
+
+        }
+
+       let address = {
+            city : "Vadodara",
+            pincode : 390023,
+            district : " East vadodara"
+            
+        }
+
+        let employeement = {
+            company : "google",
+            package : 73,
+            designation : "sde -1"
+
+        } 
+
+        person.__proto__ = address
+        person.__proto__.__proto__ = employeement     // prototype chaning 
+
+        console.log(person.city)
+        console.log(person.company)
+        console.log(person.__proto__)
+
+        
+        //structuredClone()
+
+
+
+    </script>
+</body>
+</html>
