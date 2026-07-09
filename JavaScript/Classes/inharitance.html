@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <Script>
+
+    class Animal {
+        bark(){
+            console.log("bhaw");
+        }
+    }
+
+    class Dog extends Animal{
+
+        miau(){
+            console.log("miyuuuuuuuuuuuuuuuu")
+        }
+    }
+     
+    let d = new Dog();
+    let a = new Animal();
+
+    d.bark()
+
+    // getters and setters
+
+    class person {
+
+        constructor(age){
+            this.age = age
+        }
+       set age(value){
+        if(value>=0 && value <=150){
+            this._age =value;
+        }
+       }
+    }
+
+    let  per = new person(160) 
+
+    console.log(per)
+
+
+    
+
+    </Script>
+</body>
+</html>

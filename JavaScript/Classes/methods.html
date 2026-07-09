@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+       
+        class Greet {
+             constructor(name){
+            this.name = name
+                }
+            greet () {
+                console.log( " Hello everyone this is the greet method inside greet class" , this.name)
+                return "this is return "
+            }
+        }
+
+        let gObject = new Greet("yesh bind");
+        console.log(gObject.greet())         
+        
+        // 1> method of sum 
+
+        class Sum {
+
+            constructor(a , b){
+                this.a = a,
+                this.b = b
+            }
+
+            sum (){
+                console.log(this.a+this.b)
+            }
+
+        }
+
+        let sobject  = new Sum(2 ,3);
+        sobject.sum()
+    </script>
+</body>
+</html>

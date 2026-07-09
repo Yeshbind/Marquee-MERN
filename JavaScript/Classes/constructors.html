@@ -24,7 +24,7 @@
 
         let aadmi  = new person("Yesh" , 23 , "vadodara" , 390023)
 
-        class car {
+        class Car {
 
             constructor(company , year , model ,tyre1,tyre2,tyre3,tyre4, features){
                 this.company = company,
@@ -43,10 +43,22 @@
 
         let features = [ "panaromic" , "sunroof","autolock" , " aAdas"]
 
-        let car1 = new car ("bmw" , 2019 , "base",23,45,25,55,features )
+        let car1 = new Car ("bmw" , 2019 , "base",23,45,25,55,features )
+
+        class employee{
+            constructor(name,salary,skills,cart){
+                this.name = name,
+                this.salary = salary,
+                this.skills = skills,
+                this.cart = cart
+            }
+        }
+
+        let emp1 = new  employee ("Yesh" , 740000 , ["java", "python","C"] , { keyboard : 3000 , watch : 10000})
 
         console.log(aadmi)
         console.log(car1)
+        console.log(emp1)
     </script>
 </body>
 </html>
