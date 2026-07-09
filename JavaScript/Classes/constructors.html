@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        class person {
+
+            constructor(name, age ,city, pincode){
+                this.name =name,
+                this.age = age,
+                this.address = {
+                    city1 : city,
+                    pc : pincode
+
+                }
+            }
+        }
+
+
+        let aadmi  = new person("Yesh" , 23 , "vadodara" , 390023)
+
+        class car {
+
+            constructor(company , year , model ,tyre1,tyre2,tyre3,tyre4, features){
+                this.company = company,
+                this.year = year,
+                this.model = model,
+                this.tyres = {
+                    tyre1 : tyre1,
+                    tyre2 : tyre2,
+                    tyre3 : tyre3,
+                    tyre4 : tyre4,
+
+                }
+                this.features = features
+            }
+        }
+
+        let features = [ "panaromic" , "sunroof","autolock" , " aAdas"]
+
+        let car1 = new car ("bmw" , 2019 , "base",23,45,25,55,features )
+
+        console.log(aadmi)
+        console.log(car1)
+    </script>
+</body>
+</html>
