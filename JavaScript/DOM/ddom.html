@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        .h1{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="heading" id = "head">This is  Dom </h1>
+    <h1 class="heading" id = "head2">This is Dom </h1>
+    <h1 class="heading" id = "head3">This is Dom </h1>
+
+    <script>
+        let heading = document.getElementsByTagName('h1')  // It returns HTML collection
+       
+//                                                          ----->CHanging thr main h1 tage by id and by element
+        heading[2].innerText = " Kyu nahi ho rahi padhi "
+       
+        console.log(heading[2])
+
+
+//                                                          -----> getting ele by id 
+         let head1 = document.getElementById('head') 
+          head1.innerText = " padhai nahi ho rahi hai" 
+
+             console.log(head)
+
+        //                                          Changing color by objects
+
+        head1.style.color = "blue"
+
+//                                                          ----->  getting element by class 
+
+        let head1_class = document.getElementsByClassName('heading')
+        console.log(head1_class)  // Returning a collection 
+        //head1_class[0].style.scale = 2
+
+ //                                                        ----->    query selectior
+
+        let  head_query = document.querySelector('.heading')
+
+        console.log(head_query)
+
+//                                                         ----->Set timeout  & Set Set Interval
+        setTimeout(() =>{
+            console.log("Function chal gaya 2sec me") //
+        }, 2000 );
+
+        //  setInterval(() =>{
+        //     console.log("Function chal gaya 2sec me") //
+        // }, 1000 );
+
+//   ******************************************ELEMENT MANUPLULATION **************************************
+
+        
+
+
+    </script>
+
+    
+</body>
+</html>

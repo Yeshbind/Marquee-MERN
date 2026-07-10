@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        .box{
+            height: 200px;
+            width: 300px;
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class = "box">
+    </div>
+    
+    <script>
+
+        let box = document.querySelector('.box')
+        console.dir(box)
+        setTimeout(() =>{
+            box.style.height = "400px"
+            box.style.width = "600px"
+           
+            
+        },2000);
+
+        setTimeout(() =>{
+           
+            box.style.backgroundColor = "Green"
+            
+        },4000);
+    </script>
+</body>
+</html>
