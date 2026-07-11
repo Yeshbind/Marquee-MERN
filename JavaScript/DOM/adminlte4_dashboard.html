@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #1a1d23;
+      color: #c2c7d0;
+      display: flex;
+      height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 250px;
+      background-color: #343a40;
+      height: 100vh;
+      overflow-y: auto;
+      flex-shrink: 0;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      border-bottom: 1px solid #4b545c;
+    }
+
+    .sidebar-brand img {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+    }
+
+    .sidebar-brand span {
+      font-size: 18px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      color: #c2c7d0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .sidebar a:hover {
+      background-color: #2c3138;
+      color: white;
+    }
+
+    .sidebar a.active {
+      background-color: #2c3138;
+      color: white;
+      border-left: 3px solid #3b7ddd;
+    }
+
+    .sidebar a i {
+      width: 18px;
+    }
+
+    .sidebar a .badge {
+      margin-left: auto;
+      background-color: #6c757d;
+      color: white;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 10px;
+    }
+
+    .sidebar a .arrow {
+      margin-left: auto;
+      font-size: 12px;
+    }
+
+    .sidebar .sub-menu a {
+      padding-left: 40px;
+      font-size: 13px;
+    }
+
+    .sidebar .sub-menu a .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid #c2c7d0;
+      display: inline-block;
+    }
+
+    .sidebar .sub-menu a .dot.filled {
+      background-color: white;
+      border-color: white;
+    }
+
+    .section-label {
+      padding: 10px 15px 4px;
+      font-size: 11px;
+      font-weight: bold;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    /* TOP NAV */
+    .topnav {
+      background-color: #343a40;
+      display: flex;
+      align-items: center;
+      padding: 0 15px;
+      height: 57px;
+      border-bottom: 1px solid #4b545c;
+      gap: 15px;
+    }
+
+    .topnav .toggle-btn {
+      color: #c2c7d0;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .topnav .nav-link {
+      color: #c2c7d0;
+      text-decoration: none;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .topnav .nav-link:hover {
+      color: white;
+    }
+
+    .topnav .right-side {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .topnav .icon-btn {
+      position: relative;
+      color: #c2c7d0;
+      font-size: 17px;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .topnav .icon-btn:hover {
+      color: white;
+    }
+
+    .topnav .icon-btn .badge {
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      background-color: #dc3545;
+      color: white;
+      font-size: 9px;
+      font-weight: bold;
+      border-radius: 50%;
+      width: 16px;
+      height: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .topnav .icon-btn .badge.yellow {
+      background-color: #ffc107;
+      color: black;
+    }
+
+    .topnav .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #c2c7d0;
+      cursor: pointer;
+      font-size: 14px;
+      padding: 5px 10px;
+    }
+
+    .topnav .user-info img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+    }
+
+    /* CONTENT */
+    .content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px 20px;
+    }
+
+    .content-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .content-header h1 {
+      font-size: 22px;
+      font-weight: normal;
+      color: #e9ecef;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: #6c757d;
+    }
+
+    .breadcrumb a {
+      color: #6c757d;
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      color: #c2c7d0;
+    }
+
+    /* STAT CARDS */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .stat-card {
+      border-radius: 6px;
+      padding: 15px 20px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card.blue  { background-color: #3b7ddd; }
+    .stat-card.green { background-color: #1f9d55; }
+    .stat-card.yellow { background-color: #d6a628; }
+    .stat-card.red   { background-color: #e74c3c; }
+
+    .stat-card .number {
+      font-size: 36px;
+      font-weight: bold;
+      color: white;
+    }
+
+    .stat-card .label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.85);
+      margin-top: 3px;
+      margin-bottom: 12px;
+    }
+
+    .stat-card .bg-icon {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      font-size: 65px;
+      color: rgba(255,255,255,0.25);
+    }
+
+    .stat-card .footer {
+      margin: 0 -20px;
+      padding: 7px 20px;
+      background-color: rgba(0,0,0,0.15);
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+      cursor: pointer;
+    }
+
+    .stat-card .footer:hover {
+      background-color: rgba(0,0,0,0.25);
+      color: white;
+    }
+
+    /* BOTTOM ROW */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1fr 370px;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .card {
+      background-color: #2d3238;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 15px;
+      border-bottom: 1px solid #3d4349;
+    }
+
+    .card-header .title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #e9ecef;
+    }
+
+    .card-header .tools button {
+      background-color: rgba(255,255,255,0.1);
+      border: none;
+      color: #c2c7d0;
+      border-radius: 3px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .card-header .tools button:hover {
+      background-color: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    .card img {
+      width: 100%;
+      display: block;
+    }
+
+    /* MAP FOOTER */
+    .map-footer {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #3d4349;
+    }
+
+    .map-footer-item {
+      padding: 10px;
+      text-align: center;
+      border-right: 1px solid #3d4349;
+    }
+
+    .map-footer-item:last-child {
+      border-right: none;
+    }
+
+    .map-footer-item img {
+      width: 100%;
+      height: 50px;
+      object-fit: cover;
+    }
+
+    .map-footer-item .mini-label {
+      font-size: 12px;
+      color: #8b939e;
+      margin-top: 5px;
+    }
+
+    /* CHAT CARD */
+    .chat-card {
+      background-color: #2d3238;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .chat-card-header {
+      display: flex;
+      align-items: center;
+      padding: 10px 15px;
+      border-bottom: 1px solid #3d4349;
+    }
+
+    .chat-card-header .title {
+      font-size: 15px;
+      font-weight: bold;
+      color: #e9ecef;
+      flex: 1;
+    }
+
+    .chat-card-header .badge {
+      background-color: #3b7ddd;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      border-radius: 10px;
+      padding: 2px 8px;
+      margin-right: 8px;
+    }
+
+    .chat-card-header .tools button {
+      background-color: rgba(255,255,255,0.1);
+      border: none;
+      color: #c2c7d0;
+      border-radius: 3px;
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      font-size: 12px;
+      margin-left: 3px;
+    }
+
+    .chat-card-header .tools button:hover {
+      background-color: rgba(255,255,255,0.2);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <img src="https://adminlte.io/themes/v3/dist/img/AdminLTELogo.png" alt="Logo">
+      <span>AdminLTE 4</span>
+    </div>
+
+    <a href="#" class="active"><i class="fa fa-gauge"></i> Dashboard <i class="fa fa-chevron-up arrow"></i></a>
+    <div class="sub-menu">
+      <a href="#"><span class="dot filled"></span> Dashboard v1</a>
+      <a href="#"><span class="dot"></span> Dashboard v2</a>
+      <a href="#"><span class="dot"></span> Dashboard v3</a>
+    </div>
+
+    <a href="#"><i class="fa fa-palette"></i> Theme Generate</a>
+    <a href="#"><i class="fa fa-box"></i> Widgets <i class="fa fa-chevron-right arrow"></i></a>
+    <a href="#"><i class="fa fa-table-columns"></i> Layout Options <span class="badge">7</span><i class="fa fa-chevron-right arrow"></i></a>
+    <a href="#"><i class="fa fa-puzzle-piece"></i> UI Elements <i class="fa fa-chevron-right arrow"></i></a>
+    <a href="#"><i class="fa fa-envelope"></i> Mailbox <i class="fa fa-chevron-right arrow"></i></a>
+    <a href="#"><i class="fa fa-wpforms"></i> Forms <i class="fa fa-chevron-right arrow"></i></a>
+    <a href="#"><i class="fa fa-table"></i> Tables <i class="fa fa-chevron-right arrow"></i></a>
+
+    <div class="section-label">Pages</div>
+    <a href="#"><i class="fa fa-file"></i> Pages <i class="fa fa-chevron-right arrow"></i></a>
+
+    <div class="section-label">Examples</div>
+    <a href="#"><i class="fa fa-right-to-bracket"></i> Auth <i class="fa fa-chevron-right arrow"></i></a>
+
+    <div class="section-label">Multi Level Example</div>
+    <a href="#"><span class="dot"></span> Level 1</a>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+
+    <!-- TOP NAV -->
+    <div class="topnav">
+      <span class="toggle-btn"><i class="fa fa-bars"></i></span>
+      <a href="#" class="nav-link"><i class="fa fa-desktop"></i> Live preview</a>
+      <a href="#" class="nav-link"><i class="fa fa-book"></i> Documentation</a>
+
+      <div class="right-side">
+        <div class="icon-btn"><i class="fa fa-magnifying-glass"></i></div>
+        <div class="icon-btn">
+          <i class="fa fa-comment"></i>
+          <span class="badge">3</span>
+        </div>
+        <div class="icon-btn">
+          <i class="fa fa-bell"></i>
+          <span class="badge yellow">15</span>
+        </div>
+        <div class="icon-btn"><i class="fa fa-expand"></i></div>
+        <div class="icon-btn"><i class="fa fa-moon"></i></div>
+        <div class="user-info">
+          <img src="https://adminlte.io/themes/v3/dist/img/user2-160x160.jpg" alt="User">
+          Alexander Pierce
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <div class="content-header">
+        <h1>Dashboard</h1>
+        <div class="breadcrumb">
+          <a href="#">Home</a> / Dashboard
+        </div>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div class="stats-row">
+        <div class="stat-card blue">
+          <div class="number">150</div>
+          <div class="label">New Orders</div>
+          <div class="bg-icon"><i class="fa fa-cart-shopping"></i></div>
+          <div class="footer">More info &nbsp;<i class="fa fa-link"></i></div>
+        </div>
+        <div class="stat-card green">
+          <div class="number">53%</div>
+          <div class="label">Bounce Rate</div>
+          <div class="bg-icon"><i class="fa fa-chart-bar"></i></div>
+          <div class="footer">More info &nbsp;<i class="fa fa-link"></i></div>
+        </div>
+        <div class="stat-card yellow">
+          <div class="number">44</div>
+          <div class="label">User Registrations</div>
+          <div class="bg-icon"><i class="fa fa-user-plus"></i></div>
+          <div class="footer" style="color: rgba(0,0,0,0.5);">More info &nbsp;<i class="fa fa-link"></i></div>
+        </div>
+        <div class="stat-card red">
+          <div class="number">65</div>
+          <div class="label">Unique Visitors</div>
+          <div class="bg-icon"><i class="fa fa-chart-pie"></i></div>
+          <div class="footer">More info &nbsp;<i class="fa fa-link"></i></div>
+        </div>
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bottom-row">
+
+        <!-- Sales Chart Card -->
+        <div class="card">
+          <div class="card-header">
+            <span class="title">Sales Value</span>
+          </div>
+          <img src="1782187396352_image.png" alt="Sales Chart">
+        </div>
+
+        <!-- Map Card -->
+        <div class="card">
+          <div class="card-header" style="background-color: #2f80ed; border-bottom: 1px solid #2670d0;">
+            <span class="title" style="color: white;">Sales Value</span>
+            <div class="tools">
+              <button><i class="fa fa-plus"></i></button>
+              <button><i class="fa fa-minus"></i></button>
+            </div>
+          </div>
+          <img src="1782187396352_image.png" alt="World Map" style="background-color: #2f80ed;">
+          <div class="map-footer">
+            <div class="map-footer-item">
+              <img src="1782187396352_image.png" alt="Visitors chart">
+              <div class="mini-label">Visitors</div>
+            </div>
+            <div class="map-footer-item">
+              <img src="1782187396352_image.png" alt="Online chart">
+              <div class="mini-label">Online</div>
+            </div>
+            <div class="map-footer-item">
+              <img src="1782187396352_image.png" alt="Sales chart">
+              <div class="mini-label">Sales</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- DIRECT CHAT -->
+      <div class="chat-card">
+        <div class="chat-card-header">
+          <span class="title">Direct Chat</span>
+          <span class="badge">3</span>
+          <div class="tools">
+            <button><i class="fa fa-minus"></i></button>
+            <button><i class="fa fa-comment"></i></button>
+            <button><i class="fa fa-xmark"></i></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+           
+let departments = [
+    { Dname: "IT", Dcode: 58 },
+    { Dname: "Finance", Dcode: 158 },
+    { Dname: "HR", Dcode: 48 },
+    { Dname: "Marketing", Dcode: 44 },
+    { Dname: "CEO", Dcode: 2 }
+];
+
+let employees = [
+{
+    employee_id: "EMP101",
+    name: "rohan",
+    salary: 5000,
+    age: 14,
+    country: "london",
+    department: 158,
+    interests: [
+        { vlogs: ["daily_vlogs"] },
+        { learning: ["science"] },
+        { creativity: ["art"] },
+        { self_growth: ["motivational"] }
+    ],
+    junior_assigned: ["JEMP201","JEMP202"],
+    products_in_cart: [
+        { Pname: "Shirt", cost: 500 },
+        { Pname: "Headphones", cost: 1800 }
+    ]
+},
+{
+    employee_id: "EMP102",
+    name: "bhupendr",
+    salary: 7000,
+    age: 50,
+    country: "india",
+    department: 58,
+    interests: [
+        { food: ["food"] },
+        { vlogs: ["travel_vlogs"] },
+        { creativity: ["art"] },
+        { storytelling: ["storytelling"] }
+    ],
+    junior_assigned: ["JEMP203"],
+    products_in_cart: [
+        { Pname: "Shirt", cost: 500 },
+        { Pname: "Shoes", cost: 2500 },
+        { Pname: "Watch", cost: 3500 }
+    ]
+},
+{
+    employee_id: "EMP103",
+    name: "kartik",
+    salary: 300,
+    age: 2,
+    country: "america",
+    department: 48,
+    interests: [
+        { sports: ["sports"] },
+        { news: ["politics"] },
+        { gaming: ["online_gaming"] },
+        { learning: ["science"] }
+    ],
+    junior_assigned: ["JEMP204","JEMP205"],
+    products_in_cart: [
+        { Pname: "Football", cost: 1200 },
+        { Pname: "Shoes", cost: 2500 }
+    ]
+},
+{
+    employee_id: "EMP104",
+    name: "suraj",
+    salary: 200,
+    age: 19,
+    country: "russia",
+    department: 158,
+    interests: [
+        { vlogs: ["travel_vlogs"] },
+        { vehicles: ["bike"] },
+        { news: ["politics"] },
+        { food: ["food"] }
+    ],
+    junior_assigned: ["JEMP206"],
+    products_in_cart: [
+        { Pname: "Bike Helmet", cost: 2200 },
+        { Pname: "Watch", cost: 3500 }
+    ]
+},
+{
+    employee_id: "EMP105",
+    name: "aryan",
+    salary: 100,
+    age: 70,
+    country: "japan",
+    department: 48,
+    interests: [
+        { history: ["history"] },
+        { self_growth: ["motivational"] },
+        { news: ["news"] },
+        { learning: ["science"] }
+    ],
+    junior_assigned: ["JEMP207","JEMP208","JEMP209"],
+    products_in_cart: [
+        { Pname: "Books", cost: 900 },
+        { Pname: "Laptop", cost: 65000 }
+    ]
+},
+{
+    employee_id: "EMP106",
+    name: "aryan",
+    salary: 8800,
+    age: 40,
+    country: "japan",
+    department: 58,
+    interests: [
+        { coding: ["coding"] },
+        { technology: ["technology"] },
+        { learning: ["science"] },
+        { creativity: ["art"] }
+    ],
+    junior_assigned: ["JEMP210"],
+    products_in_cart: [
+        { Pname: "Laptop", cost: 65000 },
+        { Pname: "Mouse", cost: 700 },
+        { Pname: "Keyboard", cost: 1500 }
+    ]
+},
+{
+    employee_id: "EMP107",
+    name: "jatin",
+    salary: 10000,
+    age: 12,
+    country: "russia",
+    department: 48,
+    interests: [
+        { gaming: ["gaming","online_gaming"] },
+        { sports: ["sports"] },
+        { anime: ["anime"] }
+    ],
+    junior_assigned: ["JEMP211","JEMP212"],
+    products_in_cart: [
+        { Pname: "Gaming Mouse", cost: 2200 },
+        { Pname: "Headphones", cost: 1800 }
+    ]
+},
+{
+    employee_id: "EMP108",
+    name: "aaditya",
+    salary: 2000,
+    age: 19,
+    country: "india",
+    department: 44,
+    interests: [
+        { business: ["marketing","business"] },
+        { self_growth: ["motivational"] },
+        { storytelling: ["storytelling"] }
+    ],
+    junior_assigned: ["JEMP213"],
+    products_in_cart: [
+        { Pname: "Notebook", cost: 150 },
+        { Pname: "Pen", cost: 50 },
+        { Pname: "Shirt", cost: 500 }
+    ]
+},
+{
+    employee_id: "EMP109",
+    name: "sachi",
+    salary: 100,
+    age: 2,
+    country: "uganda",
+    department: 158,
+    interests: [
+        { fun: ["cartoons"] },
+        { food: ["food"] },
+        { learning: ["science"] },
+        { vlogs: ["daily_vlogs"] }
+    ],
+    junior_assigned: ["JEMP214"],
+    products_in_cart: [
+        { Pname: "Chocolate", cost: 100 },
+        { Pname: "Books", cost: 900 }
+    ]
+},
+{
+    employee_id: "EMP110",
+    name: "khushi",
+    salary: 3500,
+    age: 99,
+    country: "brazil",
+    department: 58,
+    interests: [
+        { vlogs: ["travel_vlogs"] },
+        { dance: ["dance"] },
+        { food: ["food"] },
+        { creativity: ["art"] }
+    ],
+    junior_assigned: ["JEMP215","JEMP216"],
+    products_in_cart: [
+        { Pname: "Dress", cost: 1800 },
+        { Pname: "Watch", cost: 3500 },
+        { Pname: "Shoes", cost: 2500 }
+    ]
+},
+{
+    employee_id: "EMP111",
+    name: "parul",
+    salary: 50000,
+    age: 34,
+    country: "jamaica",
+    department: 2,
+    interests: [
+        { leadership: ["leadership"] },
+        { business: ["business"] },
+        { technology: ["technology"] },
+        { self_growth: ["motivational"] }
+    ],
+    junior_assigned: ["JEMP217","JEMP218","JEMP219"],
+    products_in_cart: [
+        { Pname: "Laptop", cost: 65000 },
+        { Pname: "Watch", cost: 3500 },
+        { Pname: "Phone", cost: 45000 }
+    ]
+}];
+
+let junior_employees = [
+{
+    employee_id:"JEMP201",
+    name:"rahul",
+    salary:1800,
+    age:21,
+    country:"india",
+    department:158,
+    interests:[{vlogs:["travel_vlogs"]},{learning:["science"]}],
+    products_in_cart:[{Pname:"Bag",cost:900}]
+},
+{
+    employee_id:"JEMP202",
+    name:"neha",
+    salary:2000,
+    age:22,
+    country:"india",
+    department:158,
+    interests:[{food:["food"]},{creativity:["art"]}],
+    products_in_cart:[{Pname:"Shoes",cost:1500}]
+},
+{
+    employee_id:"JEMP203",
+    name:"aman",
+    salary:2200,
+    age:24,
+    country:"india",
+    department:58,
+    interests:[{coding:["coding"]},{technology:["technology"]}],
+    products_in_cart:[{Pname:"Keyboard",cost:1200}]
+},
+{
+    employee_id:"JEMP204",
+    name:"riya",
+    salary:1700,
+    age:20,
+    country:"india",
+    department:48,
+    interests:[{gaming:["online_gaming"]}],
+    products_in_cart:[{Pname:"Football",cost:900}]
+},
+{
+    employee_id:"JEMP205",
+    name:"vivek",
+    salary:2100,
+    age:23,
+    country:"india",
+    department:48,
+    interests:[{sports:["sports"]}],
+    products_in_cart:[{Pname:"Shoes",cost:1800}]
+},
+{
+    employee_id:"JEMP206",
+    name:"karan",
+    salary:2300,
+    age:24,
+    country:"russia",
+    department:158,
+    interests:[{vehicles:["bike"]}],
+    products_in_cart:[{Pname:"Helmet",cost:1200}]
+},
+{
+    employee_id:"JEMP207",
+    name:"simran",
+    salary:2500,
+    age:22,
+    country:"japan",
+    department:48,
+    interests:[{history:["history"]}],
+    products_in_cart:[{Pname:"Books",cost:700}]
+},
+{
+    employee_id:"JEMP208",
+    name:"mohit",
+    salary:2400,
+    age:23,
+    country:"india",
+    department:48,
+    interests:[{learning:["science"]}],
+    products_in_cart:[{Pname:"Notebook",cost:150}]
+},
+{
+    employee_id:"JEMP209",
+    name:"anjali",
+    salary:2600,
+    age:22,
+    country:"india",
+    department:48,
+    interests:[{self_growth:["motivational"]}],
+    products_in_cart:[{Pname:"Watch",cost:2000}]
+},
+{
+    employee_id:"JEMP210",
+    name:"rohit",
+    salary:2800,
+    age:25,
+    country:"india",
+    department:58,
+    interests:[{coding:["coding"]}],
+    products_in_cart:[{Pname:"Mouse",cost:800}]
+},
+{
+    employee_id:"JEMP211",
+    name:"deep",
+    salary:1800,
+    age:21,
+    country:"india",
+    department:48,
+    interests:[{gaming:["gaming"]}],
+    products_in_cart:[{Pname:"Headphones",cost:1800}]
+},
+{
+    employee_id:"JEMP212",
+    name:"priya",
+    salary:1900,
+    age:21,
+    country:"india",
+    department:48,
+    interests:[{anime:["anime"]}],
+    products_in_cart:[{Pname:"Books",cost:500}]
+},
+{
+    employee_id:"JEMP213",
+    name:"harsh",
+    salary:2000,
+    age:23,
+    country:"india",
+    department:44,
+    interests:[{business:["marketing"]}],
+    products_in_cart:[{Pname:"Notebook",cost:200}]
+},
+{
+    employee_id:"JEMP214",
+    name:"isha",
+    salary:1700,
+    age:20,
+    country:"uganda",
+    department:158,
+    interests:[{fun:["cartoons"]}],
+    products_in_cart:[{Pname:"Chocolate",cost:100}]
+},
+{
+    employee_id:"JEMP215",
+    name:"nikhil",
+    salary:2100,
+    age:24,
+    country:"brazil",
+    department:58,
+    interests:[{dance:["dance"]}],
+    products_in_cart:[{Pname:"Shoes",cost:1700}]
+},
+{
+    employee_id:"JEMP216",
+    name:"megha",
+    salary:2200,
+    age:23,
+    country:"brazil",
+    department:58,
+    interests:[{food:["food"]}],
+    products_in_cart:[{Pname:"Dress",cost:1800}]
+},
+{
+    employee_id:"JEMP217",
+    name:"abhishek",
+    salary:3000,
+    age:26,
+    country:"jamaica",
+    department:2,
+    interests:[{leadership:["leadership"]}],
+    products_in_cart:[{Pname:"Laptop Bag",cost:2000}]
+},
+{
+    employee_id:"JEMP218",
+    name:"kiran",
+    salary:3200,
+    age:27,
+    country:"jamaica",
+    department:2,
+    interests:[{business:["business"]}],
+    products_in_cart:[{Pname:"Phone",cost:25000}]
+},
+{
+    employee_id:"JEMP219",
+    name:"sonia",
+    salary:3100,
+    age:25,
+    country:"jamaica",
+    department:2,
+    interests:[{technology:["technology"]}],
+    products_in_cart:[{Pname:"Watch",cost:3000}]
+}
+];
+
+  </script>
+
+</body>
+</html>
