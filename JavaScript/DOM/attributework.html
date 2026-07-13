@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DOM Practice</title>
+</head>
+<body>
+
+    <h1 id="heading" class="title">Hello World</h1>
+
+    <img id="image" src="cat.jpg" width="200">
+
+    <input type="text" id="username" value="Yesh">
+
+    <button onclick="changeEverything()">Click Me</button>
+
+    <script >
+        function changeEverything() {
+
+    // Get elements
+    let heading = document.getElementById("heading");
+    let image = document.getElementById("image");
+    let input = document.getElementById("username");
+
+    // 1. Change text (textContent)
+    heading.textContent = "Welcome to JavaScript";
+
+    // 2. Change ID
+    heading.id = "newHeading";
+
+    // 3. Change class
+    heading.className = "newClass";
+
+    // 4. Read HTML attribute (getAttribute)
+    console.log("Current Image Source:", image.getAttribute("src"));
+
+    // 5. Create/Update HTML attribute (setAttribute)
+    image.setAttribute("alt", "Beautiful Nature");
+
+    // 6. Read input value (value)
+    console.log("Input Value:", input.value);
+
+    // 7. Change image source (src)
+    image.src = "nature.jpg";
+}
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Heading Color</title>
+
+<style>
+    h1{
+        text-align: center;
+        transition: 0.5s;
+    }
+
+    .class1{
+        color: green;
+    }
+    .class2{
+        color: aquamarine;
+    }  
+    .class3{
+        color: brown;
+    }
+</style>
+</head>
+
+<body>
+
+<h1 class="head"> Risto ke thara rang badal deya </h1>
+
+
+<script>
+
+// let head = document.querySelector(".head");
+
+// function changeHeading(){
+
+//     let color = prompt("Enter a color:");
+
+//         head.style.color = color;          // Text color
+
+//         head.innerText = `This has ${color} Colour`;
+ 
+
+// }
+
+// // Run once after 10 seconds
+// setTimeout(changeHeading,10000);
+
+// // Then repeat every 10 seconds
+// setInterval(changeHeading,10000);
+
+
+let head = document.querySelector(".head");
+
+let classes = ["class1", "class2", "class3"];
+
+let index = 0;
+
+setInterval(() => {
+
+    head.classList.remove(classes[index]); // Removing current class
+
+    index = (index + 1) % classes.length;  // Moving to the  next class
+
+    head.classList.add(classes[index]);    // Add next class
+
+}, 3000);
+
+</script>
+
+</body>
+</html>
