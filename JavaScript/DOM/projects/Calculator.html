@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ <style>
+    #myDiv {
+    width: 700px;
+    height: 50px;
+
+    
+    border: 2px solid black;
+    border-radius: 25px;
+    text-align: center;
+    
+    background-color: lightgray;
+    margin: 20px;
+    cursor: pointer;
+    transition: 0.4s ease;
+}
+
+.class1 {
+    background-color: crimson;
+    color: white;
+}
+
+.class2 {
+    background-color: royalblue;
+    color: white;
+}
+   
+ </style>
+   
+</head>
+<body>
+   <!-- <h1> 5 and 10</h1> -->
+    <div id="myDiv"></div>
+    
+
+      <button id="btn"> +</button>
+     <button id="btn2"> - </button>
+      <button id="btn3"> / </button>
+     <button id="btn4"> x </button>
+
+     <button id="0"> 0 </button>
+     <button id="1"> 1 </button>
+     <button id="2"> 2 </button>
+     <button id="3"> 3 </button>
+     <button id="4"> 4 </button>
+     <button id="5"> 5 </button>
+     <button id="6"> 6 </button>
+     <button id="7"> 7 </button>
+     <button id="8"> 8 </button>
+     <button id="9"> 9 </button>
+     <button id="equ"> =</button>
+
+
+    <Script>
+     
+
+        // 3>  Calc creater 
+
+        
+         let myDiv = document.querySelector("#myDiv");
+        let buttons = document.querySelectorAll("button");
+
+
+         let add = document.querySelector("#btn");
+        let sub = document.querySelector("#btn2");
+        let div= document.querySelector("#btn3");
+        let mal = document.querySelector("#btn4");
+        let eq = document.querySelector("#equ");
+    
+         let a =5;
+         let b =10;
+        let ans= "";
+         // for displaying input
+          buttons.forEach(function(button) {
+                button.addEventListener("click", function() {
+                    myDiv.innerHTML += this.innerHTML;
+                    ans =  myDiv.innerText;
+                });
+            });
+
+
+            
+
+            console.log(ans);
+            
+
+            console.log(5+3)
+
+            
+            eq.addEventListener('click',function(){
+             console.log(ans);
+               
+          
+
+        })
+
+        // add.addEventListener('click',function(){
+        //      console.log("add");
+        //        let sum = a +b
+
+        //      myDiv.innerHTML = sum 
+
+        // })
+        
+        // sub.addEventListener('click',function(){
+        //         console.log("sub");
+        //        let sum = b-a
+
+        //      myDiv.innerHTML = sum 
+
+             
+              
+        // })
+         
+        // div.addEventListener('click',function(){
+        //         console.log("sub");
+        //        let sum = a /b
+
+        //      myDiv.innerHTML = sum 
+
+             
+              
+        // })
+         
+        // mal.addEventListener('click',function(){
+        //         console.log("sub");
+        //        let sum = a *b
+
+        //      myDiv.innerHTML = sum 
+
+             
+              
+        // })
+        
+
+        
+
+    </Script>
+    
+</body>
+</html>

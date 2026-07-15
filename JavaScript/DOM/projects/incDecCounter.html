@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin-top: 100px;
+}
+
+#myDiv{
+    width: 150px;
+    height: 60px;
+    margin: 20px auto;
+    border: 2px solid black;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    padding: 8px 15px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+    </style>
+
+    
+</head>
+<body>
+    <div id="myDiv"> Click me sir</div>
+     <button id="btn"> increse me up!</button>
+     <button id="btn2"> Decrese me there!</button>
+     <button id ="btn3"> Reset</button>
+    <script>
+         let myDiv = document.querySelector("#myDiv");
+         let mybtn = document.querySelector("#btn");
+        let mybtn2 = document.querySelector("#btn2");
+        let mybtn3 = document.querySelector("#btn3");
+
+         let count =0;
+
+        mybtn.addEventListener('click',function(){
+             console.log("daba deya");
+               count++
+
+             myDiv.innerHTML = count
+
+        })
+        
+        mybtn2.addEventListener('click',function(){
+             console.log("daba deya");
+             if(count>0){
+                
+              count--
+             }
+             myDiv.innerHTML = count
+             
+              
+        })
+         
+        mybtn3.addEventListener('click',function(){
+             console.log("Reset ");
+              count =0
+             myDiv.innerHTML = count
+             
+              
+        })
+
+
+
+    </script>
+</body>
+</html>
