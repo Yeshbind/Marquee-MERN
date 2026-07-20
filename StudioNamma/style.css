@@ -1,0 +1,159 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+@font-face {
+    font-family: mono;
+    src: url(./GTPressuraMono.ttf);
+    font-weight: normal;
+    font-size: normal;
+}
+@font-face {
+    font-family: herofont;
+     src: url(./SairaExtraCondensed-Bold.ttf);
+}
+header{
+    height: 10vh;
+    width: 100%;
+    background-color: #E4E4E4;
+    display: flex;
+    padding: 30px;
+    font-family: mono;
+    position: fixed;
+    z-index: 9999;  
+}
+header p{
+  text-transform: uppercase;
+}
+
+.left{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    gap: 150px;
+
+}
+.left p{
+    font-weight: 400;
+}
+
+.right{
+    height:100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+     gap: 150px;
+
+}
+
+.hero{
+    height: 100vh;
+    width: 100%;
+    background-color: #E4E4E4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+
+}
+
+.hero h1{
+    font-family: herofont;
+    line-height: 140px;
+    font-size: 180px;
+    text-transform: uppercase;
+    
+}
+
+.cardfollower{
+    height: 300px;
+    width: 250px;
+    background-color: pink;
+    position: fixed;
+    z-index: 999;
+    border-radius: 10px;
+    overflow: hidden;
+
+}
+.cardfollower video {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.video-container{
+    height: 100vh;
+    width: 100%;
+    background-color: #E4E4E4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.video-container video{
+    height: 90%;
+    width: 90%;
+    object-fit: cover;
+    background-color: red;
+}
+
+.creative-stdio{
+    height: 100vh;
+    width: 100%;
+    background-color: #E4E4E4;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: start;
+    text-align: center;
+    padding-top: 100px;
+    /* overflow: hidden; */
+    font-family: herofont;
+}
+.creative-stdio p{
+    margin-bottom: 5%;
+    font-size: 20px;
+}
+
+.creative-stdio h1{
+    font-family: herofont;
+    line-height: 90px;
+    font-size: 90px;
+    text-transform: uppercase;
+    
+}
+
+.projects{
+    height: 100vh;
+    width: 100%;
+    background-color: #E4E4E4;
+    display: flex;
+    padding: 30px;
+    font-family: mono;
+}
+.projects p{
+  text-transform: uppercase;
+}
+
+.menu {
+    height: 100%;
+    width: 200%;
+    background-color: red;
+    position: fixed;
+    z-index: 9999;
+    top: -100%;
+    right: 0%;
+    left: 2%;
+
+}
