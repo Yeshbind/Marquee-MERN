@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html , body{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+button{
+    padding: 10px 30px;
+    height: 50px;
+    width: 150px;
+    background-color: transparent;
+    border-radius: 50px;
+    border: 1px solid;
+    font-size: 20px;
+    position: relative;
+    overflow: hidden;
+
+
+}
+p {
+  margin: 0;
+}
+
+button:hover .overlay{
+    left: 0%;
+}
+
+.overlay{
+     height: 50px;
+    width: 150px;
+    background-color: black;
+    position: absolute;
+    left: -104%;
+    bottom: 0%;
+    z-index: -1;
+    border-radius: 50px;
+    transition: linear 0.2s;
+
+}
+
+button:hover p{
+    color: white;
+}
